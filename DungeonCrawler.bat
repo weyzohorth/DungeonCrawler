@@ -1,0 +1,2 @@
+@cd DungeonCrawler
+@DungeonCrawler.vbs
