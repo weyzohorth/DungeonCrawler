@@ -148,7 +148,8 @@ public class Character extends AObject
 	{
 		if (0 < _damageTime)
 			return ;
-		_attackTime = 0;
+		if (_canBeCanceledAttack)
+			_attackTime = 0;
 		_health -= damage;
 		if (_health <= 0)
 			die();	

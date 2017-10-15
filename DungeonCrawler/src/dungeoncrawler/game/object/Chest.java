@@ -13,6 +13,8 @@ import dungeoncrawler.game.character.Player;
 import dungeoncrawler.game.object.Bonus.e_bonus;
 import dungeoncrawler.gui.Font;
 
+import org.newdawn.slick.util.Log;
+
 public class Chest extends AObject
 {
 	static private int _frameNumber = 4;
@@ -95,11 +97,11 @@ public class Chest extends AObject
 				Data.sum.scoreByChests[_size] += _score;
 				try
 				{
-					Bonus bonus = new Bonus(_map, e_bonus.HEAL, (_size + 1) * 25);
+					Bonus bonus = new Bonus(_map, e_bonus.HEAL, 0.5f + _size / 4.0f);
 					bonus.setPos(player.getX(), player.getY());
-					if (0 < _size && (int)(Math.random() * 100) <= (_size * _size) / 9.0 * 100)
+					if (0 < _size)
 					{
-						bonus = new Bonus(_map, _size / 1.5f);
+						bonus = new Bonus(_map, _size);
 						bonus.setPos(player.getX(), player.getY());
 					}
 				}

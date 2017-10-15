@@ -54,9 +54,9 @@ public class Npc extends Character
 		_speed += (Data.sum.difficulty - 1) * 0.2f * _type.getId() +
 				(Data.sum.finalLevel - 1)  / 100  * 2 * Data.sum.difficulty * _type.getId();
 		_health += (Data.sum.difficulty - 1) * 10 * _type.getId() +
-				(Data.sum.finalLevel - 1) / Data.changeWorld * 5  * Data.sum.difficulty * _type.getId();
+				(Data.sum.finalLevel - 1) / Data.changeWorld * 8 * Data.sum.difficulty * _type.getId();
 		_strength += (Data.sum.difficulty - 1) * 2 * _type.getId() +
-				(Data.sum.finalLevel - 1) / Data.changeWorld * Data.sum.difficulty * _type.getId();
+				(Data.sum.finalLevel - 1) / Data.changeWorld  * 2 * Data.sum.difficulty * _type.getId();
 		setAttackSpeed((Data.sum.difficulty - 1) * 0.2f * _type.getId() +
 				getAttackSpeed() + (Data.sum.finalLevel - 1)  / (Data.changeWorld * 8) * Data.sum.difficulty * _type.getId());
 		calcScore();

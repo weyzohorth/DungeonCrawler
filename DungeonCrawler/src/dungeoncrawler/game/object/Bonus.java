@@ -33,6 +33,7 @@ public class Bonus extends AObject
 	private e_bonus _type;
 	protected String _name;
 	protected float _value;
+	private String _message;
 	
 	public Bonus(Map map, float mult) throws SlickException
 	{
@@ -55,30 +56,37 @@ public class Bonus extends AObject
 		
 		_type = type;
 		Player player = _map.getPlayer();
+		float value = _type.getValue() * mult;
 		switch(_type)
 		{
 		case ATKSPEED:
-			Data.sum.atkspd += _type.getValue();
-			player.setAttackSpeed(player.getAttackSpeed() + _type.getValue());
+			Data.sum.atkspd += value;
+			player.setAttackSpeed(player.getAttackSpeed() + value);
+			_message = Float.toString((int)(value * 100) / 100.0f);
 			break;
 		case HEAL:
-			player.addHealth((int)(_type.getValue() * mult));
+			player.addHealth((int)value);
+			_message = Integer.toString((int)value);
 			break;
 		case HEALTH:
-			Data.sum.health += _type.getValue() * mult;
-			player.setHealthMax(player.getHealthMax() + Data.sum.health);
+			Data.sum.health += value;
+			player.setHealthMax(player.getHealthMax() + (int)value);
+			_message = Integer.toString((int)value);
 			break;
 		case SIGHT:
-			Data.sum.sightdistance += _type.getValue();
-			player.setSightDistance(player.getSightDistance() + (int)_type.getValue());
+			Data.sum.sightdistance += value;
+			player.setSightDistance(player.getSightDistance() + (int)value);
+			_message = Integer.toString((int)value);
 			break;
 		case SPEED:
-			Data.sum.speed += _type.getValue();
-			player.setSpeed(player.getSpeed() + _type.getValue());
+			Data.sum.speed += value;
+			player.setSpeed(player.getSpeed() + value);
+			_message = Float.toString((int)(value * 100) / 100.0f);
 			break;
 		case STRENGTH:
-			Data.sum.strength += _type.getValue() * mult;
-			player.setStrength(player.getStrength() + (int)(_type.getValue() * mult));
+			Data.sum.strength += value;
+			_message = Integer.toString((int)value);
+			player.setStrength(player.getStrength() + (int)value);
 			break;
 		}
 	}
@@ -107,8 +115,7 @@ public class Bonus extends AObject
 	{
 		float tw = 32;
 		float th = 32;
-		_font.drawText(_type.name() + " " + Float.toString(_type.getValue()),
+		_font.drawText(_type.name() + " " + _message,
 				(int)(x * tw) - 5, (int)(y * th - 15 - _textY - _offsetY));
 	}
-
 }
